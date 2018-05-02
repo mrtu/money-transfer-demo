@@ -15,8 +15,8 @@ The app runs with in-memory datastructures and allow concurrent operations for b
 The project is a maven project so if you execute `mvn clean package` on the root of the project you should see in the target folders the jars:
 * `money-transfer-app-1.0-jar-with-dependencies.jar`, corresponding to the fat jar of the application, which you can
  execute with the command `java -jar money-transfer-app-1.0-jar-with-dependencies.jar [PORT]` (the default port is `4567`)
-* `money-transfer-integration-test-1.0-jar-with-dependencies.jar`, corresponding to the fat jar of the integration tests, which you can
- execute with the command `java -jar money-transfer-integration-test-1.0-jar-with-dependencies.jar [HOST] [PORT]` (the default host is `localhost` and port is `4567`)
+* `money-transfer-integration-test-1.0-fat-tests.jar`, corresponding to the fat jar of the integration tests, which you can
+ execute with the command `java -jar money-transfer-integration-test-1.0-fat-tests.jar [HOST] [PORT]` (the default host is `localhost` and port is `4567`)
 
 If you prefer to skip this part the jars themselves are also in the repository (`jars` dir)
 
@@ -35,6 +35,6 @@ in which `100.0` is the initial value you can specify, the return body is a quot
 {
   "origin": "ORIGIN_IBAN",
   "destiny": "DESTINY_IBAN",
-  "amount": 99.9
+  "amount": AMOUNT_TO_TRANSFER
 }
 ```
