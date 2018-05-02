@@ -36,8 +36,8 @@ public class TransactionsEffectivenessIT {
 
     @Test
     public void theTotalBalanceOfAllAccountsShouldRemainParallel() throws IOException, URISyntaxException {
-        int numberAccounts = 100;
-        int numTransactions = 10000;
+        int numberAccounts = 10;
+        int numTransactions = 1000;
         int initialBalance = 100;
 
         Random random = new Random();
@@ -54,7 +54,7 @@ public class TransactionsEffectivenessIT {
                     String from = generateRandom(random, ibans);
                     String to = generateRandom(random, ibans, from);
                     try {
-                        int amount = random.nextInt(60);
+                        float amount = 1 + random.nextInt(30);
                         boolean wasApplied = transactionHandler.applyTransaction(amount, from, to);
                         LOGGER.info("Transferring\t" + amount + "\tfrom\t" + from + "\tto\t" + to + "\t" + wasApplied);
                     } catch (IOException e) {

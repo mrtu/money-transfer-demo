@@ -11,6 +11,11 @@
 
     <artifactId>money-transfer-integration-test</artifactId>
 
+    <properties>
+        <host>localhost</host>
+        <port>4567</port>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -31,6 +36,12 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <host>localhost</host>
+                        <port>4567</port>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>
