@@ -35,6 +35,6 @@ in which `100.0` is the initial value you can specify, the return body is a quot
 {
   "origin": "ORIGIN_IBAN",
   "destiny": "DESTINY_IBAN",
-  "amount": AMOUNT_TO_TRANSFER
+  "amount": 99.9
 }
 ```
