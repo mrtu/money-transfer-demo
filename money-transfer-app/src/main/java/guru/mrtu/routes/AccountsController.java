@@ -1,7 +1,6 @@
 package guru.mrtu.routes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import guru.mrtu.AccountsRepository;
 import guru.mrtu.model.AccountCreationRequest;
 import spark.Request;
 import spark.Response;
@@ -12,6 +11,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static guru.mrtu.AccountsRepositoryImpl.instance;
 import static java.util.Objects.isNull;
 import static org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400;
 import static org.eclipse.jetty.http.HttpStatus.CREATED_201;
@@ -26,10 +26,10 @@ public final class AccountsController {
 
         @Override
         public Object handle(Request request, Response response) throws HTTPException {
-            AccountCreationRequest accountCreationRequest = getValidated(request.bodyAsBytes());
-            AccountsRepository.instance().createAccount(accountCreationRequest);
+            AccountCreationRequest accountRequest = getValidated(request.bodyAsBytes());
+            instance().createAccount(accountRequest.getIban(), accountRequest.getInitialBalance());
             response.status(CREATED_201);
-            return accountCreationRequest.getIban();
+            return accountRequest.getIban();
         }
 
         private AccountCreationRequest getValidated(byte[] content) {
@@ -62,7 +62,7 @@ public final class AccountsController {
                 return "No iban provided";
             }
             response.type("application/json");
-            return AccountsRepository.instance().getAccount(iban);
+            return instance().getAccount(iban);
         }
 
     }

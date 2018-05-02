@@ -1,31 +1,22 @@
 package guru.mrtu;
 
 import guru.mrtu.model.Account;
-import guru.mrtu.model.AccountCreationRequest;
 
-import java.util.HashMap;
-import java.util.Map;
+public interface AccountsRepository {
 
-public class AccountsRepository {
+    /**
+     * Stores an account
+     *
+     * @param iban    the account id
+     * @param balance the account balance
+     */
+    void createAccount(String iban, float balance);
 
-    private static final AccountsRepository repository = new AccountsRepository();
-
-    private final Map<String, Account> accounts;
-
-    public AccountsRepository() {
-        this.accounts = new HashMap<>();
-    }
-
-    public static AccountsRepository instance() {
-        return repository;
-    }
-
-    public void createAccount(AccountCreationRequest request) {
-        accounts.put(request.getIban(), new Account(request.getIban(), request.getInitialBalance()));
-    }
-
-    public Account getAccount(String iban) {
-        return accounts.get(iban);
-    }
-
+    /**
+     * Obtain an account by providing an account id
+     *
+     * @param iban the account id
+     * @return the account info
+     */
+    Account getAccount(String iban);
 }

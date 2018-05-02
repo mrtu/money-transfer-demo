@@ -1,7 +1,7 @@
 package guru.mrtu.routes;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import guru.mrtu.TransactionManager;
+import guru.mrtu.ConcurrentTransactionManager;
 import guru.mrtu.exceptions.InvalidTransactionRequestException;
 import guru.mrtu.model.TransactionRequest;
 import spark.Request;
@@ -19,7 +19,7 @@ public class TransactionController {
 
         private static final ObjectMapper MAPPER = new ObjectMapper();
 
-        private static final TransactionManager transactionManager = TransactionManager.instance();
+        private static final ConcurrentTransactionManager transactionManager = ConcurrentTransactionManager.instance();
 
         @Override
         public Object handle(Request request, Response response) {
